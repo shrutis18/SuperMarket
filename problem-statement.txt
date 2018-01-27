@@ -1,0 +1,79 @@
+Supermarket
+
+1. Add products to the shopping cart
+
+Given -
+1. Empty shopping cart
+2. Dove soap, price 30
+
+When -
+User adds 5 qty of Dove soap
+
+Then (shopping cart contains) -
+- 5 qty of dove soap for unit price 30
+- shopping cart's total price is 150
+
+-----------------------------------------------------------
+
+2. Add products to the shopping cart, which has "buy x get y free" offer
+Given -
+1. Empty shopping cart
+2. Dove soap, price 30, buy 2 get 1 free offer
+3. Axe Deo, price 100, no offer
+
+When -
+User adds 3 qty of Dove soap
+
+Then (shopping cart contains) -
+- 3 qty of dove soap for unit price 30, total price 60, discount is 30
+- shopping cart's total price is 60
+
+When -
+User adds 5 qty of Dove soap
+
+Then (shopping cart contains) -
+- 5 qty of dove soap for unit price 30, total price 120, discount is 30
+- shopping cart's total price is 120
+
+When -
+User adds 3 qty of Dove soap
+User adds 2 qty of Axe Deo
+
+Then (shopping cart contains) -
+- 3 qty of dove soap for unit price 30, total price 60, discount is 30
+- 2 qty of Axe Deo for unit price 100, total price 200, discount is 0
+- shopping cart's total price is 260
+
+-----------------------------------------------------------------
+
+3. Add products to the shopping cart, which has discount in percentage, e.g. buy 1 and get 50% discount on 2nd
+
+Given -
+1. Empty shopping cart
+2. Dove soap, price 30, buy 1 and get 50% discount on next 1
+
+When -
+User adds 2 qty of Dove spoap
+
+Then (shopping cart contains) -
+- 2 qty of dove soap for unit price 30, total price 45, discount is 15
+- shopping cart's total price is 45
+
+----------------------------------------------------------------------
+
+4. Apply an offer to all items in a shopping cart, e.g get 20% off all items when your purchase total is greater than 500
+
+Given -
+1. Empty shopping cart
+2. Dove soap, price 30
+3. Axe Deo, price 100
+4. Get 20% off all items when your purchase total is equal and more than 500
+
+When -
+User adds 5 qty of Dove spoap
+User adds 4 qty of Axe Deo
+
+Then (shopping cart contains) -
+- 5 qty of dove soap for unit price 30, total price 120, discount is 30
+- 4 qty of Axe Deo for unit price 100, total price 320, discount is 80
+- shopping cart's total price is 440, total discount is 110a
